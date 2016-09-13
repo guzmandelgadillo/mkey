@@ -3,11 +3,9 @@
 ################################################################################
 
 *.pubxml
-*.config
 *.njsproj
 /typings.json
 /typings
 *.xml
 /node_modules
 /obj
-/masterkey-test/
