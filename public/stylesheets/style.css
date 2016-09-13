@@ -1,0 +1,11 @@
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00b7ff;
+}
+.dl-horizontal dt {
+  white-space: normal;
+}

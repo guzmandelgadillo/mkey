@@ -1,0 +1,47 @@
+﻿<table class="table table-condensed table-striped">
+    <tbody ng-repeat="fee in fees">
+        <tr ng-class="{muted: fee.regionalPrice}">
+            <td>
+                <span ng-hide="fee.type == 'BasePrice'">{{ fee.name }}</span>
+                <span ng-show="fee.type == 'BasePrice'">{{ fee.name + 'Price' | translate }}</span>
+                <small>{{ fee.category  }}</small>
+            </td>
+
+            <td class="text-right">
+                <span price="fee.unitPrice"
+                      ng-hide="item.regionalPrice"
+                      ng-class="{strikethrough:fee.regionalPrice}">
+                </span>
+            </td>
+            <td class="text-right">
+                <span price="fee.regularPrice">
+                    {{fee.regularPrice|number:2}}
+                </span>
+            </td>
+        </tr>
+        <tr ng-show="fee.regionalPrice" class="text-success">
+            <td ng-bind="fee.regionalPrice.name"></td>
+            <td class="text-right">{{fee.regionalPrice.unitPrice|number:2}}</td>
+            <td class="text-right">{{fee.regionalPrice.total|number:2}}</td>
+        </tr>
+        <tr ng-repeat="increase in fee.increase">
+            <td translate="fee.{{ increase.type }}"></td>
+            <td class="text-right">
+                <span>
+                    {{increase.unitPrice - fee.unitPrice | number:2}} {{statementCmd.currency.base}}
+                </span>
+            </td>
+
+            <td align="right" valign="middle">
+                <span>{{increase.total|number:2}} {{statementCmd.currency.base}}</span>
+            </td>
+        </tr>
+        <tr ng-repeat="discount in fee.discount" class="text-success">
+            <td colspan="2" ng-bind="discount.name"></td>
+
+            <td align="right" valign="middle">
+                -<span>{{discount.total|number:2}} {{statementCmd.currency.base}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

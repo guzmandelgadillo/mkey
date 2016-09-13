@@ -1,0 +1,79 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong data-translate="associatedServices"></strong>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr ng-repeat="service in options.associatedServiceLine.product | orderBy: 'name'"
+                ng-class="{active: cmd.associatedServiceLine[service.id].added}">
+                <td>
+                    <button class="btn btn-default btn-xs"
+                            type="button"
+                            ng-hide="cmd.associatedServiceLine[service.id].added"
+                            ng-click="cmd.associatedServiceLine[service.id].add(); refreshDraft(cmd)">
+                        <i class="fa fa-plus"></i>
+                        <span data-translate="add"></span>
+                    </button>
+                    <button class="btn btn-default btn-xs"
+                            type="button"
+                            ng-show="cmd.associatedServiceLine[service.id].added"
+                            ng-click="cmd.associatedServiceLine[service.id].remove(); refreshDraft(cmd)">
+                        <i class="fa fa-remove"></i>
+                        <span data-translate="remove"></span>
+                    </button>
+                </td>
+                <td class="td-width">
+                    <h5 style="margin:0;" ng-bind="service.name"></h5>
+                    <small ng-bind="service.provider.name"></small>
+
+                    <div ng-if="cmd.associatedServiceLine[service.id].added" class="row">
+
+                        <!-- @TODO Switch based on widget, add start and end date -->
+                        <div ng-hide="service.pricingRule == 'UniquePrice'"
+                             style="padding-top: 8px; padding-bottom: 8px">
+
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <input type="number" min="1" class="form-control input-sm"
+                                           ng-model-options="{ debounce: 1500 }"
+                                           ng-model="cmd.associatedServiceLine[service.id].qty"
+                                           ng-change="refreshDraft(cmd)">
+                                    <span class="input-group-addon">
+                                        <span translate="unit.{{ service.productUnit }}"></span>
+                                        [<span ng-bind="cmd.associatedServiceLine[service.id].draftLine.items[0].unitPrice | number:2"></span>]
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </td>
+
+                <td align="right">
+                    <span ng-show="cmd.associatedServiceLine[service.id].added ">
+                        <strong class="text-success">
+                            {{cmd.associatedServiceLine[service.id].draftLine.regularPrice}}
+                            {{service.currency}}
+                        </strong>
+
+                        <span ng-show="cmd.associatedServiceLine[service.id].draftLine.total < cmd.associatedServiceLine[service.id].draftLine.regularPrice">
+                            <br> -
+                            <strong class="text-success">
+                                {{(cmd.associatedServiceLine[service.id].draftLine.regularPrice - cmd.associatedServiceLine[service.id].draftLine.total)}}
+                                {{service.currency}}
+                            </strong>
+                        </span>
+                    </span>
+
+                    <span ng-hide="cmd.associatedServiceLine[service.id].added" class="text-muted">
+                        <span price="service.price[0].amount" currency-code="service.currency" symbol="true" exchange="false">
+                            {{service.price[0].amount}}
+                            {{service.currency}}
+                        </span>
+                        <br>
+                        <small translate="unit.{{ service.periodicCost }}" ng-show="service.periodicCost != 'Once'"></small>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

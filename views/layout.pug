@@ -1,0 +1,103 @@
+﻿//- Primero hay que crear las variables de hojas de estilo.
+- var debug = true;
+- var stylesDebug = ['/libs/bootstrap/css/bootstrap.css'];
+-     stylesDebug.push('/libs/bootstrap/css/bootstrap-theme.css');
+-     stylesDebug.push('/libs/font-awesome/css/font-awesome.css');
+-     stylesDebug.push('/libs/angular-ui-select/select.css');
+-     stylesDebug.push('/masterkey-dev/css/masterkey-api.css');
+-     stylesDebug.push('/stylesheets/style.css');
+- var stylesProduction = ['/libs/bootstrap/css/bootstrap.css'];
+-     stylesProduction.push('/libs/font-awesome/css/font-awesome.css');
+-     stylesProduction.push('/libs/angular-ui-select/select.css');
+-     stylesProduction.push('/masterkey-dev/css/masterkey-api.css');
+-     stylesProduction.push('/stylesheets/style.css');
+- var scriptsDebug = ['/libs/jquery/jquery.js', '/libs/bootstrap/js/bootstrap.js'];
+-     scriptsDebug.push('/libs/lodash/lodash.js');
+-     scriptsDebug.push('/libs/angular/angular.js');
+-     scriptsDebug.push('/libs/angular-sanitize/angular-sanitize.js');
+-     scriptsDebug.push('/libs/angular-translate/angular-translate.js');
+-     scriptsDebug.push('/libs/angular-ui-select/select.js');
+-     scriptsDebug.push('/libs/checklist-model/checklist-model.js');
+- var scriptsProduction = ['/libs/jquery/jquery.min.js', '/libs/bootstrap/js/bootstrap.min.js'];
+-     scriptsProduction.push('/libs/lodash/lodash.min.js');
+-     scriptsProduction.push('/libs/angular/angular.min.js');
+-     scriptsProduction.push('/libs/angular-sanitize/angular-sanitize.min.js');
+-     scriptsProduction.push('/libs/angular-translate/angular-translate.min.js');
+-     scriptsProduction.push('/libs/angular-ui-select/select.min.js');
+-     scriptsProduction.push('/libs/checklist-model/checklist-model.js');
+- var styles = stylesProduction;
+- var scripts = scriptsProduction;
+- if (debug) {
+-   styles = stylesDebug;
+-   scripts = scriptsDebug;
+- }
+doctype html
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Entorno de prueba directivas Masterkey')
+    title Directivas - Materkey Application
+    block styles
+      each style in styles
+        link(rel='stylesheet', href=style)
+  body(ng-app='masterkey.test')
+    div.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        div.navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse', role='presentation')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Masterkey
+        div.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li: a(href='/') Inicio
+            li: a(href='/search') Búsqueda
+            li: a(href='/quote') Cotización
+    main.container(ng-controller='testController')
+      h1 Entorno de pruebas Masterkey
+      block content
+      hr(ng-show="messages")
+      p.alert.alert-info(ng-show="messages") {{messages}}
+      hr
+      footer
+        block footer
+          p &copy; 2016 - Masterkey
+
+    block scripts
+      each script in scripts
+        script(type='text/javascript' src=script)
+      script(type='text/javascript', src='/javascripts/app-module.js')
+      script(type='text/javascript', src='/javascripts/app-controller.js')
+      if (debug)
+        script(type='text/javascript', src='/masterkey-dev/js/masterkey-module.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-quote-accommodation.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-quote-associated.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-quote-course.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-quote-directive.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-quote-variant.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-search-directive.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-search-filters.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-search-list.js')
+        script(type='text/javascript', src='/masterkey-dev/js/mk-search-topbar.js')
+        script(type='text/javascript', src='/masterkey-dev/js/CommandGenerator.js')
+        script(type='text/javascript', src='/masterkey-dev/js/configurations.js')
+        script(type='text/javascript', src='/masterkey-dev/js/ConverterService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/CourseService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/CourseType.js')
+        script(type='text/javascript', src='/masterkey-dev/js/CurrencyService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/DataFile.js')
+        script(type='text/javascript', src='/masterkey-dev/js/DraftCommand.js')
+        script(type='text/javascript', src='/masterkey-dev/js/endpointService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/EventFormatFilter.js')
+        script(type='text/javascript', src='/masterkey-dev/js/FutureObjectService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/LineCommand.js')
+        script(type='text/javascript', src='/masterkey-dev/js/PaginationBackendService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/Price.js')
+        script(type='text/javascript', src='/masterkey-dev/js/QuoteService.js')
+        script(type='text/javascript', src='/masterkey-dev/js/SaleQueryCommand.js')
+        script(type='text/javascript', src='/masterkey-dev/js/ui-bootstrap-datepicker-tpls-2.1.3.js')
+      else
+        script(type='text/javascript', src='/masterkey-dev/dist/masterkey-api.min.js')
+
