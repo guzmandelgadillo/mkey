@@ -37,11 +37,11 @@
             };
 
             function quoteSaveSuccess(response) {
-                scope.messages = "quote.save.succes";
+                scope.messages = "La cotización se guardó exitosamente.";
             }
 
             function quoteSaveError(error) {
-                scope.errors = "quote.save.error";
+                scope.errors = "Hubo un error mientras guardaba la cotización.";
                 console.log(error);
             }
         }

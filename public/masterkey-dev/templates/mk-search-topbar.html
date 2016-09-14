@@ -1,7 +1,7 @@
 ﻿<div style="overflow: visible; background-color: #CCC; margin: 15px 0; padding: 15px;">
     <form class="row" ng-submit="goSearch(searchCmd.place, searchCmd.courseType)">
         <div class="col-md-3">
-            <select ng-options="type.value as (type.value) for type in courseTypeList"
+            <select ng-options="type.value as ('courseType.' + type.value| translate) for type in courseTypeList"
                     ng-model="searchCmd.courseType"
                     class="form-control"></select>
         </div>
