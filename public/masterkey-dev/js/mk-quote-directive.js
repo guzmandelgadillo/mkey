@@ -14,7 +14,7 @@
 
             scope.isActiveTab = function (tab) {
                 return tab === scope.activeTab;
-            }
+            };
 
             scope.quoteSave = function () {
                 quoteService.postSaveQuote(scope).then(quoteSaveSuccess, quoteSaveError);
@@ -55,7 +55,7 @@
                 courseVariantId: "=mkCourseVariant",
                 userToken: "=mkUser"
             }
-        }
+        };
     }
 })(angular);
 

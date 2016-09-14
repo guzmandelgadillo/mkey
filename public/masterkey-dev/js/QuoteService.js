@@ -109,7 +109,7 @@
              */
             function addDraftToLine(id, line) {
 
-                if (!line.added) { return line }
+                if (!line.added) { return line; }
 
                 line.draftLine = _.find(draft.lines, function (l) {
                     return l.product.id === line.product.id && l.product.class === line.product.class;
@@ -139,7 +139,7 @@
         function buildProviderList(providerServiceList) {
             return _.reduce(providerServiceList, function (providerList, service) {
                 var exists = _.some(providerList, { id: service.provider.id });
-                if (exists) { return providerList }
+                if (exists) { return providerList; }
                 service.provider.$visible = true;
 
                 return providerList.concat([service.provider]);
@@ -266,7 +266,7 @@
 
             lines = lines || {};
 
-            var linesArray = _.map(Object.keys(lines), function (k) { return lines[k] });
+            var linesArray = _.map(Object.keys(lines), function (k) { return lines[k]; });
 
             return _.filter(linesArray, { added: true });
         }
@@ -294,15 +294,15 @@
 
         function marshalLine(line) {
 
-            function same(property) { return property }
+            function same(property) { return property; }
             function date(property) {
                 if (property) {
                     var date = new Date(property);
                     return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
                 }
             }
-            function id(property) { return property ? property.id : null }
-            function optional(property) { return property ? property : undefined }
+            function id(property) { return property ? property.id : null; }
+            function optional(property) { return property ? property : undefined; }
 
             function applyMarshaller(callback, value) {
                 var callbackList = angular.isArray(callback) ? callback : [callback];
@@ -340,8 +340,8 @@
                     var data = marshalCommand(scope.cmd);
                     courseService.postCreateQuote(response.data.id, data).then(function (response) {
                         resolve(response);
-                    }, function (error) { reject(error) });
-                }, function (error) { reject(error) }, function (message) { notify(message); });
+                    }, function (error) { reject(error); });
+                }, function (error) { reject(error); }, function (message) { notify(message); });
             });
         }
 
