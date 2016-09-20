@@ -1,5 +1,5 @@
 ﻿//- Primero hay que crear las variables de hojas de estilo.
-- var debug = true;
+- var debug = false;
 - var stylesDebug = ['/libs/bootstrap/css/bootstrap.css'];
 -     stylesDebug.push('/libs/bootstrap/css/bootstrap-theme.css');
 -     stylesDebug.push('/libs/font-awesome/css/font-awesome.css');
@@ -9,7 +9,7 @@
 - var stylesProduction = ['/libs/bootstrap/css/bootstrap.css'];
 -     stylesProduction.push('/libs/font-awesome/css/font-awesome.css');
 -     stylesProduction.push('/libs/angular-ui-select/select.css');
--     stylesProduction.push('/masterkey-dev/css/masterkey-api.css');
+-     stylesProduction.push('/masterkey-dev/dist/masterkey-api.css');
 -     stylesProduction.push('/stylesheets/style.css');
 - var scriptsDebug = ['/libs/jquery/jquery.js', '/libs/bootstrap/js/bootstrap.js'];
 -     scriptsDebug.push('/libs/lodash/lodash.js');
@@ -101,5 +101,4 @@ html(lang='es')
         script(type='text/javascript', src='/masterkey-dev/js/SaleQueryCommand.js')
         script(type='text/javascript', src='/masterkey-dev/js/ui-bootstrap-datepicker-tpls-2.1.3.js')
       else
-        script(type='text/javascript', src='/masterkey-dev/dist/masterkey-api.min.js')
-
+        script(type='text/javascript', src='/masterkey-dev/dist/masterkey-api.js')

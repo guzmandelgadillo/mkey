@@ -8,4 +8,5 @@
 /typings
 *.xml
 /node_modules
+/bower_components
 /obj
